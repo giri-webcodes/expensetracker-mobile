@@ -1,9 +1,35 @@
-input[type="text"]
-{
-    width:25%;
+body{
+    background-color:whitesmoke;
+}
+iframe{
+    background-color:whitesmoke;
+}
+.content{
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
-input[type="date"]
-{
-    width:25%;
+form{
+    padding: 2%;
+}
+.required-field:after {
+    color: #d00;
+    content: "*";
+    position: relative;
+  
+}
+a{
+    cursor: pointer;
+}
+
+.link{
+    color:white;
+}
+
+/*bootstrap*/
+.nav-link{
+    color: white !important;
+}
+.navbar-nav{
+    padding-left: 1%;
 }
