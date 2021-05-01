@@ -1,31 +1,46 @@
-angular.module('expenseApp',[]).controller('ExpenseTrackerController',function(){
- var exp=this;
- exp.list=[];
+var app = angular.module('expenseApp',[]);
 
- //localStorage.clear();
+app.controller('ExpenseTrackerController',['$scope','$window',function($scope,$window){
+
+//initialize $scope
+ $scope.list=[];
+ $scope.expenseMonth=getExpenseMonth();
+ $scope.masterTemplate="master.html";
+
  if(localStorage.getItem("list") !== null)
  {
- exp.list=JSON.parse(localStorage.getItem("list"));
+ $scope.list=JSON.parse(localStorage.getItem("list"));
  }
 
  //function
-exp.Add=function(){
-exp.list.push({id:(exp.list.length +1),expense:exp.newExpense,amount:exp.amount,date:exp.date});
-localStorage.setItem("list",JSON.stringify(exp.list));
-exp.newExpense='';
-exp.amount='';
-exp.date='';
+
+$scope.Add=function(){
+$scope.list.push({id:($scope.list.length +1),expense:$scope.newExpense,amount:parseFloat($scope.amount),date:new Date($scope.date),comment:$scope.comment});
+localStorage.setItem("list",JSON.stringify($scope.list));
+$scope.newExpense='';
+$scope.amount=0.0;
+$scope.date=new Date();
+$scope.comment='';
 document.getElementById("savealert").style.display=null;
 };
 
-exp.formatDate = function(date){
+$scope.resetForm = function()
+{
+$scope.newExpense='';
+$scope.amount="";
+$scope.date=new Date();
+$scope.comment='';
+
+};
+
+$scope.formatDate = function(date){
     var dateOut = new Date(date);
     return dateOut;
 };
 
-exp.sumup=function(){
+$scope.sumup=function(){
   var totalExpense=0;
-   angular.forEach(exp.list,function(item)
+   angular.forEach($scope.list,function(item)
    {
     totalExpense += parseFloat(item.amount);
    });
@@ -34,16 +49,70 @@ exp.sumup=function(){
  
 }
 
-exp.getExpense=function()
+$scope.getExpense=function()
 {
-    var jsonse = JSON.stringify(exp.list);
+    var jsonse = JSON.stringify($scope.list);
     var blob = new Blob([jsonse], {
       type: "application/json"
     });
-    exp.filename = "expense_2021.json";
-    saveAs(blob, exp.filename);
+    $scope.filename = "expense_2021.json";
+    saveAs(blob, $scope.filename);
 };
 
+$scope.delete=function(item)
+{
+ if($window.confirm('Delete expense?'))
+ {
+  var index= $scope.list.indexOf(item);
+  $scope.list.splice(index,1);
+  $window.alert('Expense deleted');
+  localStorage.clear();
+  localStorage.setItem("list",JSON.stringify($scope.list));
+ }
+};
 
-});
+}]);
+
+
+
+app.directive('selectOnClick', ['$window', function ($window) {
+  return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+          element.on('click', function () {
+              if (!$window.getSelection().toString()) {                
+                  this.setSelectionRange(0, this.value.length)
+              }
+          });
+      }
+  };
+}]);
+
+//javascript
+
+function exportToExcel() {
+  let table = document.getElementsByTagName("table");
+  var fileName= getExpenseMonth();
+  fileName=fileName.replace(" ","_");
+  fileName=fileName.concat(".xlsx");
+  TableToExcel.convert(table[0], {
+    name:fileName,
+    sheet: {
+      name: 'Expense List'
+    }
+  });
+}
+
+function clearData()
+{
+  localStorage.clear();
+}
    
+function getExpenseMonth()
+{
+  var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];;
+  var date = new Date();
+
+ return months[date.getMonth()] + ' ' + date.getFullYear();
+}
+
