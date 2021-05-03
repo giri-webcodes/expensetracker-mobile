@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="expenseApp">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="expensetracker.js"></script>
@@ -33,6 +33,7 @@
       </nav>
       <br/>
 <div class="content">
+ <input class="form-control" type="search" ng-model="searchText.expense" placeholder="search expense"/ > 
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -51,7 +52,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="row in list | orderBy:'-amount' | filter:expenseFilter track by $index">
+        <tr ng-repeat="row in list | orderBy:'-amount' | filter:searchText | filter:expenseFilter track by $index">
             <td>
                 <a ng-click="delete(row)"> {{row.expense}}</a>               
             </td>
@@ -77,5 +78,7 @@
 </div>
 
 </body>
+
+</html>
 
 </html>
