@@ -9,5 +9,9 @@ var expenseTypes=[
     "Gas Cylinder",
     "Rice Bag",
     "Kid",
-    "Amazon"
+    "Amazon",
+"Insurance",
+"Chit Fund",
+"Education",
+"House Rent"
 ];
