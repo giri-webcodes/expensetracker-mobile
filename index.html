@@ -1,7 +1,6 @@
 <!doctype html>
 <html ng-app="expenseApp">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="expensetracker.js"></script>
@@ -22,19 +21,35 @@
             <li class="nav-item active">
               <a class="nav-link" href="add.html">Add Expense</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
+                <a class="nav-link" href="report.html">Report</a>
+              </li>
+            <li class="nav-item">
                 <a class="nav-link" onclick="exportToExcel()" href="#">Export Excel</a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="admin.html">Admin</a>
               </li>
             </ul>
         </div>
       </nav>
       <br/>
+     
 <div class="content">
- <input class="form-control" type="search" ng-model="searchText.expense" placeholder="search expense"/ > 
-<table class="table table-striped table-bordered">
+    <div >       
+         <div class="divinline">
+            <input  class="form-control" type="search" ng-model="searchText.expense" placeholder="search expense"/>
+         </div>
+         <div class="divinline">
+            <a  href="add.html">Add</a> |
+         </div>
+         <div class="divinline">
+            <a  href="report.html">Report</a>
+         </div>         
+        </div>
+  
+    <br/>
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -54,7 +69,7 @@
     <tbody>
         <tr ng-repeat="row in list | orderBy:'-amount' | filter:searchText | filter:expenseFilter track by $index">
             <td>
-                <a ng-click="delete(row)"> {{row.expense}}</a>               
+                <a ng-click="editPage(row.id)"> {{row.expense}}</a>               
             </td>
             <td>
                 {{row.amount  | currency:"&#8377;"}}             
@@ -78,7 +93,5 @@
 </div>
 
 </body>
-
-</html>
 
 </html>
