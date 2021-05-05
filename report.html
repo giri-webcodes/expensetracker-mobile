@@ -1,0 +1,72 @@
+<html ng-app="expenseApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="expensetracker.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="expensetracker.css" rel="stylesheet">
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+  </head>
+
+  <body ng-controller="ExpenseTrackerController">
+    <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
+      <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span ng-bind="expenseMonth" class="link"> {{expenseMonth}} </span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="add.html">Add Expense</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="report.html">Report</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link" onclick="exportToExcel()" href="#">Export Excel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="admin.html">Admin</a>
+            </li>
+          </ul>
+      </div>
+    </nav>
+    <br/>
+<div class="content">
+  <div id="expensechart"></div>
+  </div>
+   
+    <script type="text/javascript">
+
+     
+        google.charts.load('current', {'packages':['corechart']});
+  
+     
+        google.charts.setOnLoadCallback(drawChart);
+  
+     
+        function drawChart() {
+  
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'expense');
+          data.addColumn('number', 'amount');
+          var scope = angular.element($("body")).scope();
+          angular.forEach(scope.list,function(obj){
+              data.addRow([obj.expense,obj.amount]);
+          });
+               
+          var options = {'title':'Expense Report',
+                         'width':400,
+                         'height':300};
+         
+          var chart = new google.visualization.PieChart(document.getElementById('expensechart'));
+          chart.draw(data, options);
+        }
+      </script>
+  </body>
+</html>
