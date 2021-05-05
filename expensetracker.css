@@ -1,9 +1,7 @@
 body{
     background-color:whitesmoke;
 }
-iframe{
-    background-color:whitesmoke;
-}
+/*padding*/
 .content{
     padding-left: 1%;
     padding-right: 1%;
@@ -18,12 +16,27 @@ form{
     position: relative;
   
 }
+.leftpadding{
+    padding-left: 2%;
+}
+
+.pgpadding{
+padding: 2%;
+}
+/*anchor*/
+
 a{
     cursor: pointer;
+    text-decoration: none;
 }
 
 .link{
     color:white;
+}
+
+/*div*/
+.divinline{
+display: inline-block;
 }
 
 /*bootstrap*/
@@ -32,4 +45,13 @@ a{
 }
 .navbar-nav{
     padding-left: 1%;
+}
+table{
+    background-color: aliceblue !important;
+}
+tbody{
+    border: 1px solid lavender;
+}
+thead{
+    background-color: lightblue  !important;
 }
