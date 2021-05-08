@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="expenseApp">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="expensetracker.js"></script>
@@ -41,10 +42,10 @@
             <input  class="form-control" type="search" ng-model="searchText.expense" placeholder="search expense"/>
          </div>
          <div class="divinline">
-            <a  href="add.html">Add</a> |
+            <a class="btn btn-warning"  href="add.html">Add</a>
          </div>
          <div class="divinline">
-            <a  href="report.html">Report</a>
+            <a  class="btn btn-warning" href="report.html">Report</a>
          </div>         
         </div>
   
