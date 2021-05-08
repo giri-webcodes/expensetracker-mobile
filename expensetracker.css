@@ -1,5 +1,5 @@
 body{
-    background-color:whitesmoke;
+    background-color:white;
 }
 /*padding*/
 .content{
@@ -53,5 +53,12 @@ tbody{
     border: 1px solid lavender;
 }
 thead{
-    background-color: lightblue  !important;
+    background-color:#7B68EE   !important;
+    color:white;
+ 
+}
+
+thead > tr>th
+{
+	   border:none ! important;
 }
