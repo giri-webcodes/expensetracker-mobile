@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="expenseApp">
   <head>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css">
@@ -36,15 +37,21 @@
     <div class="content" ng-init="loadEditData()">
     <div class="pgpadding">
         <div class="col-md-12">
-            <label class="text-success">Update Expense</label> |
-            <a class="text-primary" ng-click="delete()">Delete Expense</a> |
-            <a  href="index.html">Back</a>
+        	   <div class="divinline">
+            <h3 class="text-warning">Update Expense</h3> 
+            </div>
+               <div class="divinline">
+            <a  class="btn btn-warning" ng-click="delete()">Delete</a>
+             </div>
+               <div class="divinline">
+            <a class="btn btn-warning" href="index.html">Back</a>
+             </div>
+            <br/>
             <div id="alert" style="display: none;" class="alert alert-success alert-dismissible fade show" role="alert">
               <strong>Successful:</strong> Expense updated
             </div>
         </div>      
     </div>
-    
    
    <form name="form" ng-submit="update()">
   <div class="row">
@@ -85,7 +92,7 @@
       <label for="date" class="form-label">Comment</label>
     </div>
     <div class="col-md-4">
-     <textarea class="form-control" select-on-click ng-model="comment" cols="50"  maxlength="50" rows="2"></textarea>
+     <textarea class="form-control" ng-model="comment" cols="50"  maxlength="50" rows="2"></textarea>
     </div>
     <div class="col-md-7">
 
@@ -97,8 +104,8 @@
       
     </div>
     <div class="col-md-3">
-      <input class="btn btn-primary" type="submit" value="Save">
-      <a href="index.html" class="btn btn-primary">Back</a>
+      <input class="btn btn-warning" type="submit" value="Save">
+      <a href="index.html" class="btn btn-warning">Back</a>
     </div>
     <div class="col-md-7">
     
