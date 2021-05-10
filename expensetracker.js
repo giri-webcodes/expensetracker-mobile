@@ -38,15 +38,41 @@ $scope.formatDate = function(date){
     return dateOut;
 };
 
+$scope.formatAmount= function(row){
+    var color='black';
+    
+    if(row.amount >2000)
+    {  
+    	 color='red';
+    }
+    
+      if(row.expense ==='Income')
+    {  
+    	 color='green';
+    }
+    
+    return {
+    	"color": color
+    	}
+};
+
+
+
 $scope.sumup=function(){
-  var totalExpense=0;
+  $scope.totalExpense=0;
+  $scope.totalIncome=0;
    angular.forEach($scope.list,function(item)
    {
-    totalExpense += parseFloat(item.amount);
+   	if(item.expense !=='Income')
+   {
+      $scope.totalExpense += parseFloat(item.amount);
+    }
+    else
+{
+	      $scope.totalIncome += parseFloat(item.amount);
+	}
+       
    });
-
-   return totalExpense;
- 
 }
 
 $scope.getExpense=function()
