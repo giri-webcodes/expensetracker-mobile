@@ -14,5 +14,6 @@ var expenseTypes=[
 "Chit Fund",
 "Education",
 "House Rent",
-"Grocery"
+"Grocery",
+"Income"
 ];
