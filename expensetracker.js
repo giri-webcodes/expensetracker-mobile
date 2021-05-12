@@ -4,7 +4,9 @@ app.controller('ExpenseTrackerController',['$scope','$window','$filter',function
 
 //initialize $scope
  $scope.list=[];
+ $scope.mlist=[];
  $scope.expenseMonth=getExpenseMonth();
+ $scope.selectMonth=new Date().getMonth()+1;
  var editEntity=null;
 
  if(localStorage.getItem("list") !== null)
@@ -33,9 +35,29 @@ $scope.comment='';
 
 };
 
-$scope.formatDate = function(date){
-    var dateOut = new Date(date);
-    return dateOut;
+$scope.monthExp = function() {
+$scope.mlist=[];
+$scope.totalExpense=0;
+$scope.totalIncome=0;
+
+angular.forEach($scope.list,function(item)
+   {
+      var month =new Date(item.date).getMonth()+1;
+      if(month== $scope.selectMonth)
+      {
+      	 $scope.mlist.push(item);
+     
+     	if(item.expense !=='Income')
+   {
+      $scope.totalExpense += parseFloat(item.amount);
+    }
+    else
+{
+	      $scope.totalIncome += parseFloat(item.amount);
+	}
+      }
+   });
+
 };
 
 $scope.formatAmount= function(row){
