@@ -10,7 +10,7 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="expensetracker.css" rel="stylesheet">
 </head>
-<body ng-controller="ExpenseTrackerController">
+<body ng-init="monthExp()" ng-controller="ExpenseTrackerController">
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
         <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span ng-bind="expenseMonth" class="link"> {{expenseMonth}} </span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,18 +37,30 @@
       <br/>
      
 <div class="content">
-    <div >       
-         <div class="divinline">
-            <input  class="form-control" type="search" ng-model="searchText.expense" placeholder="search expense"/>
+    <div class="row" >       
+         <div class="col">
+            <input  class="form-control" id="srchexp" type="search" ng-model="searchText.expense" placeholder="search expense"/>
+            
          </div>
-         <div class="divinline">
-            <a class="btn btn-warning"  href="add.html">Add</a>
+         <div  class="col">
+      <select class="form-control" ng-model= "selectMonth"  ng-change="monthExp()">
+    <option value=''>--Select Month--</option>
+    <option selected value='1'>Janaury</option>
+    <option value='2'>February</option>
+    <option value='3'>March</option>
+    <option value='4'>April</option>
+    <option value='5'>May</option>
+    <option value='6'>June</option>
+    <option value='7'>July</option>
+    <option value='8'>August</option>
+    <option value='9'>September</option>
+    <option value='10'>October</option>
+    <option value='11'>November</option>
+    <option value='12'>December</option>
+    </select> 
+    
          </div>
-         <div class="divinline">
-            <a  class="btn btn-warning" href="report.html">Report</a>
-         </div>         
         </div>
-  
     <br/>
 <table class="table table-bordered">
     <thead>
@@ -68,7 +80,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="row in list | orderBy:'-amount' | filter:searchText | filter:expenseFilter track by $index">
+        <tr data-date="row.date" ng-repeat="row in mlist | orderBy:'-amount'  | filter:searchText | filter:expenseFilter track by $index">
             <td>
     
                 <a ng-click="editPage(row.id)"> {{row.expense}}</a>               
@@ -85,7 +97,7 @@
             </td>
         </tr>
     </tbody>
-    <tfoot ng-init="sumup(row)">
+    <tfoot>
         <tr>
             <td colspan="2">
              <label class="text-danger" ng-bind="totalExpense | currency: '&#8377;' "></label>
@@ -97,6 +109,16 @@
     </tfoot>
 </table>
 </div>
+    <script type="text/javascript">
+    $(function(){
+    const monthControl = document.querySelector('select');
+    monthControl.value = new Date().getMonth()+1;
+  $( "#srchexp" ).autocomplete({
+    source: expenseTypes
+  });  
+
+});
+    </script>
 </body>
 
 </html>
