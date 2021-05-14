@@ -10,7 +10,7 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="expensetracker.css" rel="stylesheet">
 </head>
-<body ng-init="monthExp()" ng-controller="ExpenseTrackerController">
+<body  ng-init="monthExp()" ng-controller="ExpenseTrackerController">
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
         <a style="padding-left:1%;" class="navbar-brand" href="add.html"><span ng-bind="expenseMonth" class="link">  </span> - {{ totalExpense | currency:'&#8377;'}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
 <div class="content">
     <div class="row" >       
          <div class="col">
-            <input  class="form-control" id="srchexp" type="search" ng-model="searchText.expense" placeholder="search expense"/>
+            <input  class="form-control" id="srchexp"  type="search" ng-model="searchText.expense" placeholder="search expense"/>
             
          </div>
          <div  class="col">
@@ -73,13 +73,10 @@
             <th>
                 Date
             </th>
-            <th>
-                Comment
-            </th>
         </tr>
     </thead>
     <tbody>
-        <tr data-date="row.date" ng-repeat="row in mlist | orderBy:'-amount'  | filter:searchText | filter:expenseFilter track by $index">
+        <tr data-date="row.date" ng-repeat="row in mlist | orderBy:'-amount' | filter:searchText | filter:expenseFilter track by $index">
             <td>
     
                 <a ng-click="editPage(row.id)"> {{row.expense}}</a>               
@@ -90,19 +87,14 @@
             <td>
                 <label ng-bind="row.date |  date:'MM/dd/yyyy'"></label>
             </td>
-            <td>
-            	<label   ng-bind="row.comment"></label>
-      
-            </td>
         </tr>
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="2">
+            <td colspan="3">
             	  <span>Expense: </span>
-             <label class="text-danger" ng-bind="totalExpense | currency: '&#8377;' "></label>
-            </td>
-                <td colspan="2">
+             <label class="text-danger" ng-bind="totalExpense | currency: '&#8377;' "></label> 
+             	<span> *****</span>
                 	<span>Income: </span>
             <label class="text-success" ng-bind="totalIncome | currency: '&#8377;' "></label>
             </td>
@@ -118,6 +110,30 @@
     const monthControl = document.querySelector('select');
     monthControl.value = new Date().getMonth()+1;
 });
+var elem = document.documentElement;
+/* View in fullscreen */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (elem.exitFullscreen) {
+    elem.exitFullscreen();
+  } else if (elem.webkitExitFullscreen) { /* Safari */
+    elem.webkitExitFullscreen();
+  } else if (elem.msExitFullscreen) { /* IE11 */
+    elem.msExitFullscreen();
+  }
+}
+
+window.onscroll = function(){  openFullscreen();}
     </script>
 </body>
 
