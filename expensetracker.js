@@ -5,9 +5,10 @@ app.controller('ExpenseTrackerController',['$scope','$window','$filter',function
 //initialize $scope
  $scope.list=[];
  $scope.mlist=[];
- $scope.expenseMonth=getExpenseMonth();
  $scope.selectMonth=new Date().getMonth()+1;
+ $scope.expenseMonth=getExpenseMonth( $scope.selectMonth);
  var editEntity=null;
+ 
 
  if(localStorage.getItem("list") !== null)
  {
@@ -40,6 +41,7 @@ $scope.mlist=[];
 $scope.totalExpense=0;
 $scope.totalIncome=0;
 
+ $scope.expenseMonth=getExpenseMonth( $scope.selectMonth);
 angular.forEach($scope.list,function(item)
    {
       var month =new Date(item.date).getMonth()+1;
@@ -81,9 +83,10 @@ $scope.formatAmount= function(row){
 
 
 $scope.sumup=function(){
+ 
   $scope.totalExpense=0;
   $scope.totalIncome=0;
-   angular.forEach($scope.list,function(item)
+   angular.forEach($scope.mlist,function(item)
    {
    	if(item.expense !=='Income')
    {
@@ -93,6 +96,7 @@ $scope.sumup=function(){
 {
 	      $scope.totalIncome += parseFloat(item.amount);
 	}
+  return true;
        
    });
 }
@@ -119,6 +123,7 @@ $scope.delete=function()
   localStorage.setItem("list",JSON.stringify($scope.list));
  }
 };
+
 
 //edit function
 $scope.editPage=function(id){
@@ -187,13 +192,9 @@ function clearData()
   localStorage.clear();
 }
    
-function getExpenseMonth()
+function getExpenseMonth(month)
 {
-  var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];;
-  var date = new Date();
-
- return months[date.getMonth()] + ' ' + date.getFullYear();
+  var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+var date= new Date();
+ return months[month-1] + ' ' + date.getFullYear();
 }
-
-
-
