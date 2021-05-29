@@ -15,7 +15,7 @@
   </head>
   <body ng-controller="ExpenseTrackerController" >
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
-      <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span  class="link"> {{expenseMonth}} </span></a>
+      <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span ng-bind="expenseMonth" class="link"></span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,13 +38,13 @@
     <div class="pgpadding">
         <div class="col-md-12">
         	   <div class="divinline">
-            <h3 class="text-warning">Update Expense</h3> 
+          <h5 class="header"> Update Expense</h5> 
             </div>
                <div class="divinline">
-            <a  class="btn btn-warning" ng-click="delete()">Delete</a>
+        |    <a  href="" ng-click="delete()">Delete</a>
              </div>
                <div class="divinline">
-            <a class="btn btn-warning" href="index.html">Back</a>
+         |    <a href="index.html">Back</a>
              </div>
             <br/>
             <div id="alert" style="display: none;" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -104,8 +104,8 @@
       
     </div>
     <div class="col-md-3">
-      <input class="btn btn-warning" type="submit" value="Save">
-      <a href="index.html" class="btn btn-warning">Back</a>
+      <input class="btn btn-info" type="submit" value="Save">
+      <a href="index.html" class="btn btn-info">Back</a>
     </div>
     <div class="col-md-7">
     
