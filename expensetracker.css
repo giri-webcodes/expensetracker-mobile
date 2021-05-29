@@ -1,5 +1,5 @@
 body{
-    background-color:whitesmoke;
+    background-color:aliceblue;
 }
 /*padding*/
 .content{
@@ -47,18 +47,28 @@ display: inline-block;
     padding-left: 1%;
 }
 table{
-    background-color: aliceblue !important;
+    background-color: azure !important;
 }
 tbody{
     border: 1px solid lavender;
 }
 thead{
-    background-color:#7B68EE   !important;
-    color:white;
+   /* background-color:#7B68EE   !important;*/
+    color:black;
  
 }
 
 thead > tr>th
 {
-	   border:none ! important;
+	 /*  border:none ! important;*/
+	   font-weight: normal !important;
+}
+#alert
+{
+	color:red;
+}
+
+.header
+{
+	color: coral;
 }
