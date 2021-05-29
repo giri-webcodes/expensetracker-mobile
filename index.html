@@ -12,7 +12,7 @@
 </head>
 <body  ng-init="monthExp()" ng-controller="ExpenseTrackerController">
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <a style="padding-left:1%;" class="navbar-brand" href="add.html"><span ng-bind="expenseMonth" class="link">  </span> - {{ totalExpense | currency:'&#8377;'}}</a>
+        <a style="padding-left:1%;" class="navbar-brand" href="add.html">Expense Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,7 +26,7 @@
                 <a class="nav-link" href="report.html">Report</a>
               </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="exportToExcel()" href="#">Export Excel</a>
+                <a class="nav-link" href=""     ng-click="exportToExcel()">Export Excel</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="admin.html">Admin</a>
@@ -34,9 +34,13 @@
             </ul>
         </div>
       </nav>
-      <br/>
+      
      
 <div class="content">
+	   <div class="pgpadding">
+	    <h5 class="header"> Expense List - <span ng-bind="expenseMonth" class="header"></span> - <span ng-bind="totalExpense | currency: '&#8377;' " class="header"></span> </h5>
+	   </div>
+	
     <div class="row" >       
          <div class="col">
             <input  class="form-control" id="srchexp"  type="search" ng-model="searchText.expense" placeholder="search expense"/>
@@ -73,6 +77,9 @@
             <th>
                 Date
             </th>
+                     <th>
+                Comment
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -84,14 +91,18 @@
             <td>
             	    	<label  ng-style="formatAmount(row)" ng-bind="row.amount | currency:'&#8377;'" ></label>
             </td>
-            <td>
+                  <td>
                 <label ng-bind="row.date |  date:'MM/dd/yyyy'"></label>
             </td>
+                  <td>
+                {{row.comment}}
+            </td>
+      
         </tr>
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3">
+            <td colspan="4">
             	  <span>Expense: </span>
              <label class="text-danger" ng-bind="totalExpense | currency: '&#8377;' "></label> 
              	<span> *****</span>
@@ -101,7 +112,10 @@
         </tr>
     </tfoot>
 </table>
-    	<span>&copy; <script>document.write(new Date().getFullYear())</script> Expense Tracker  - <a href="mailto: giri-webdev@outlook.com">Giri Prasad</a></span>
+    	<span>&copy; <script>document.write(new Date().getFullYear())</script> Expense Tracker  - <a href="mailto: giri-webdev@outlook.com">Giri Prasad</a>
+    		| <a href="" onclick="openFullscreen()">view</a>
+    		| <a href=""    onclick="closeFullscreen()">resize</button>
+	</span>
     <br/>
         <br/>
 </div>
@@ -111,7 +125,7 @@
     monthControl.value = new Date().getMonth()+1;
 });
 var elem = document.documentElement;
-/* View in fullscreen */
+
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
@@ -122,18 +136,16 @@ function openFullscreen() {
   }
 }
 
-/* Close fullscreen */
+
 function closeFullscreen() {
-  if (elem.exitFullscreen) {
-    elem.exitFullscreen();
-  } else if (elem.webkitExitFullscreen) { /* Safari */
-    elem.webkitExitFullscreen();
-  } else if (elem.msExitFullscreen) { /* IE11 */
-    elem.msExitFullscreen();
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
   }
 }
-
-window.onscroll = function(){  openFullscreen();}
     </script>
 </body>
 
