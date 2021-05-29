@@ -1,5 +1,6 @@
 var app = angular.module('expenseApp',[]);
 
+
 app.controller('ExpenseTrackerController',['$scope','$window','$filter',function($scope,$window,$filter){
 
 //initialize $scope
@@ -24,7 +25,9 @@ $scope.newExpense='';
 $scope.amount='';
 $scope.date=new Date();
 $scope.comment='';
-document.getElementById("alert").style.display=null;
+$("#alert").show();
+$("#alert").hide(3000);
+
 };
 
 $scope.resetForm = function()
@@ -117,8 +120,9 @@ $scope.delete=function()
  {
   var index= $scope.list.indexOf(editEntity);
   $scope.list.splice(index,1);
-  $('#alert').show();
   $('#alert').html('<strong>Successful:</strong> Expense deleted');
+  $("#alert").show();
+$("#alert").hide(3000);
   localStorage.clear();
   localStorage.setItem("list",JSON.stringify($scope.list));
  }
@@ -150,8 +154,24 @@ $scope.list.splice(index,1);
 $scope.list.push({id:editEntity.id,expense:$scope.newExpense,amount:parseFloat($scope.amount),date:new Date($scope.date),comment:$scope.comment});
 localStorage.clear();
 localStorage.setItem("list",JSON.stringify($scope.list));
-document.getElementById("alert").style.display=null;
+$("#alert").show();
+$("#alert").hide(3000);
 }
+
+$scope.exportToExcel = function (){
+	
+  let table = document.getElementsByTagName("table");
+  var fileName= getExpenseMonth($scope.selectMonth);
+  fileName=fileName.replace(" ","_");
+  fileName=fileName.concat(".xlsx");
+  TableToExcel.convert(table[0], {
+    name:fileName,
+    sheet: {
+      name: 'Expense List'
+    }
+  });
+}
+
 
 }]);
 
@@ -176,7 +196,7 @@ app.directive('selectOnClick', ['$window', function ($window) {
 
 function exportToExcel() {
   let table = document.getElementsByTagName("table");
-  var fileName= getExpenseMonth();
+  var fileName= getExpenseMonth($scope.selectMonth);
   fileName=fileName.replace(" ","_");
   fileName=fileName.concat(".xlsx");
   TableToExcel.convert(table[0], {
