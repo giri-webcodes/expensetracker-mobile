@@ -15,5 +15,7 @@ var expenseTypes=[
 "Education",
 "House Rent",
 "Grocery",
-"Income"
+"Income",
+"Department Store",
+"Postpaid Bill"
 ];
