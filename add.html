@@ -15,7 +15,7 @@
   </head>
   <body ng-controller="ExpenseTrackerController" >
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
-      <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span  class="link"> {{expenseMonth}} </span></a>
+      <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span ng-bind="expenseMonth" class="link"></span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,10 +38,10 @@
     <div class="pgpadding">
       <div class="col-md-12" >
       	        <div class="divinline">
-          <h3 class="text-warning">Add Expense</h3>
+          <h5 class="header">Add Expense</h5>
           </div>
                   <div class="divinline">
-          <a class="btn btn-warning"   href="index.html">Back</a>       
+        |  <a   href="index.html"> Back</a>       
      </div>
          
              
@@ -102,9 +102,9 @@
       
     </div>
     <div class="col-md-3">
-      <input class="btn btn-warning" type="submit" value="Save">
-      <input class="btn btn-warning" ng-click="resetForm()" type="button" value="Reset">
-       <a class="btn btn-warning"   href="index.html">Back</a> 
+      <input class="btn btn-info" type="submit" value="Save">
+      <input class="btn btn-info" ng-click="resetForm()" type="button" value="Reset">
+       <a class="btn btn-info"   href="index.html">Back</a> 
     </div>
     <div class="col-md-7">
     
