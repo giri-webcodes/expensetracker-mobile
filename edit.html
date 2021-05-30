@@ -13,7 +13,7 @@
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="expensetracker.css" rel="stylesheet">
   </head>
-  <body ng-controller="ExpenseTrackerController" >
+  <body    ng-init="monthExp()" ng-controller="ExpenseTrackerController" >
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
       <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span ng-bind="expenseMonth" class="link"></span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,13 +38,12 @@
     <div class="pgpadding">
         <div class="col-md-12">
         	   <div class="divinline">
-          <h5 class="header"> Update Expense</h5> 
+          <h5 class="header"> Update Expense - <span ng-bind="expenseMonth" class="header"></span> - <span ng-bind="totalExpense | currency: '&#8377;' " class="header"></span>  </h5> 
             </div>
                <div class="divinline">
-        |    <a  href="" ng-click="delete()">Delete</a>
+       
              </div>
                <div class="divinline">
-         |    <a href="index.html">Back</a>
              </div>
             <br/>
             <div id="alert" style="display: none;" class="alert alert-success alert-dismissible fade show" role="alert">
@@ -70,7 +69,7 @@
       <label for="amount" class="form-label required-field">Amount</label>
     </div>
     <div class="col-md-4">
-      <input type="number" class="form-control" select-on-click  required="required" ng-model="amount" id="amount" placeholder="expense amount" >
+      <input type="number" autocomplete="off" class="form-control" select-on-click  required="required" ng-model="amount" id="amount" placeholder="expense amount" />
     </div>
     <div class="col-md-7">
 
@@ -105,6 +104,7 @@
     </div>
     <div class="col-md-3">
       <input class="btn btn-info" type="submit" value="Save">
+      <input class="btn btn-info" ng-click="delete()" type="button" value="Delete">
       <a href="index.html" class="btn btn-info">Back</a>
     </div>
     <div class="col-md-7">
