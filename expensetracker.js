@@ -10,6 +10,7 @@ app.controller('ExpenseTrackerController',['$scope','$window','$filter',function
  $scope.expenseMonth=getExpenseMonth( $scope.selectMonth);
  var editEntity=null;
  
+ 
 
  if(localStorage.getItem("list") !== null)
  {
@@ -21,13 +22,10 @@ app.controller('ExpenseTrackerController',['$scope','$window','$filter',function
 $scope.Add=function(){
 $scope.list.push({id:($scope.list.length +1),expense:$scope.newExpense,amount:parseFloat($scope.amount),date:new Date($scope.date),comment:$scope.comment});
 localStorage.setItem("list",JSON.stringify($scope.list));
-$scope.newExpense='';
-$scope.amount='';
-$scope.date=new Date();
-$scope.comment='';
+$scope.resetForm();
+$scope.monthExp();
 $("#alert").show();
-$("#alert").hide(3000);
-
+$("#alert").hide(10000);
 };
 
 $scope.resetForm = function()
@@ -36,7 +34,7 @@ $scope.newExpense='';
 $scope.amount="";
 $scope.date=new Date();
 $scope.comment='';
-
+$("#expense"). focus ();
 };
 
 $scope.monthExp = function() {
@@ -120,11 +118,18 @@ $scope.delete=function()
  {
   var index= $scope.list.indexOf(editEntity);
   $scope.list.splice(index,1);
+
   $('#alert').html('<strong>Successful:</strong> Expense deleted');
   $("#alert").show();
-$("#alert").hide(3000);
   localStorage.clear();
   localStorage.setItem("list",JSON.stringify($scope.list));
+  $scope.monthExp();
+
+    $window.setTimeout(function ()
+    {
+    $window.location.href="index.html";
+     },1000);
+  
  }
 };
 
@@ -154,8 +159,9 @@ $scope.list.splice(index,1);
 $scope.list.push({id:editEntity.id,expense:$scope.newExpense,amount:parseFloat($scope.amount),date:new Date($scope.date),comment:$scope.comment});
 localStorage.clear();
 localStorage.setItem("list",JSON.stringify($scope.list));
+$scope.monthExp();
 $("#alert").show();
-$("#alert").hide(3000);
+$("#alert").hide(6000);
 }
 
 $scope.exportToExcel = function (){
@@ -184,9 +190,9 @@ app.directive('selectOnClick', ['$window', function ($window) {
       restrict: 'A',
       link: function (scope, element, attrs) {
           element.on('click', function () {
-              if (!$window.getSelection().toString()) {                
+             if (!$window.getSelection().toString()) {                
                   this.setSelectionRange(0, this.value.length)
-              }
+             }
           });
       }
   };
