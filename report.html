@@ -12,9 +12,9 @@
    
   </head>
 
-  <body ng-controller="ExpenseTrackerController">
+  <body   ng-init="monthExp()" ng-controller="ExpenseTrackerController">
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
-      <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker - <span ng-bind="expenseMonth" class="link"> {{expenseMonth}} </span></a>
+      <a style="padding-left:1%;" class="navbar-brand" href="index.html">Expense Tracker</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,6 +38,7 @@
     </nav>
     <br/>
 <div class="content">
+	    <h5 class="header"> Expense Report - <span ng-bind="expenseMonth" class="header"></span> - <span ng-bind="totalExpense | currency: '&#8377;' " class="header"></span> </h5>
   <div id="expensechart"></div>
   </div>
    
@@ -57,11 +58,24 @@
           data.addColumn('string', 'expense');
           data.addColumn('number', 'amount');
           var scope = angular.element($("body")).scope();
-          angular.forEach(scope.list,function(obj){
-              data.addRow([obj.expense,obj.amount]);
+          
+var grpList= scope.mlist.reduce(function(result, current) {
+            result[current.expense] = result[current.expense] || [];
+            result[current.expense].push(current);
+            return result;
+        }, {});
+
+          angular.forEach(grpList,function(obj){
+            		  var exp="",amt=0;
+            angular.forEach(obj, function (i){
+              exp=i.expense ;
+               amt+=i.amount;
           });
-               
-          var options = {'title':'Expense Report',
+          data.addRow([exp,amt]);
+          
+          });
+          
+          var options = {'title':' ',
                          'width':400,
                          'height':300};
          
