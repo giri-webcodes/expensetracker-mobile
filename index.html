@@ -12,7 +12,7 @@
 </head>
 <body  ng-init="monthExp()" ng-controller="ExpenseTrackerController">
     <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <a style="padding-left:1%;" class="navbar-brand" href="add.html">Expense Tracker</a>
+        <a style="padding-left:1%;" class="navbar-brand" data-pgid="2"  href="" ng-click="loadPage($event)" >Expense Tracker</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,13 +20,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="add.html">Add Expense</a>
+              <a class="nav-link" data-pgid="2"  href="" ng-click="loadPage($event)">Add Expense</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="report.html">Report</a>
+                <a class="nav-link"  data-pgid="4"    href="" ng-click="loadPage($event)">Report</a>
               </li>
             <li class="nav-item">
-                <a class="nav-link" href=""     ng-click="exportToExcel()">Export Excel</a>
+                <a class="nav-link" href=""  ng-click="exportToExcel()">Export Excel</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="admin.html">Admin</a>
@@ -85,8 +85,7 @@
     <tbody>
         <tr data-date="row.date" ng-repeat="row in mlist | orderBy:'-amount' | filter:searchText | filter:expenseFilter track by $index">
             <td>
-    
-                <a ng-click="editPage(row.id)"> {{row.expense}}</a>               
+                <a href="" data-pgid="3"    ng-click="loadPage($event)"   data-editid="{{row.id}}"> {{row.expense}}</a>               
             </td>
             <td>
             	    	<label  ng-style="formatAmount(row)" ng-bind="row.amount | currency:'&#8377;'" ></label>
@@ -120,10 +119,10 @@
         <br/>
 </div>
     <script type="text/javascript">
-    $(function(){
-    const monthControl = document.querySelector('select');
-    monthControl.value = new Date().getMonth()+1;
-});
+   // $(function(){
+   // const monthControl = document.querySelector('select');
+  //  monthControl.value = new Date().getMonth()+1;
+//});
 var elem = document.documentElement;
 
 function openFullscreen() {
