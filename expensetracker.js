@@ -6,11 +6,19 @@ app.controller('ExpenseTrackerController',['$scope','$window','$filter',function
 //initialize $scope
  $scope.list=[];
  $scope.mlist=[];
- $scope.selectMonth=new Date().getMonth()+1;
  $scope.expenseMonth=getExpenseMonth( $scope.selectMonth);
  var editEntity=null;
  
- 
+  var params = new URLSearchParams(location.search);
+  var month= params.get('month');
+  if(month)
+  {
+    $scope.selectMonth=month;
+  }
+  else
+{
+	 $scope.selectMonth=new Date().getMonth()+1;
+	}
 
  if(localStorage.getItem("list") !== null)
  {
@@ -135,8 +143,8 @@ $scope.delete=function()
 
 
 //edit function
-$scope.editPage=function(id){
-  $window.location.href="edit.html?id="+id;
+$scope.editPage=function(id,month){
+  $window.location.href="edit.html?id="+id+"&month="+month;
 };
 
 $scope.loadEditData=function()
@@ -179,6 +187,24 @@ $scope.exportToExcel = function (){
 }
 
 
+$scope.loadPage= function (evnt){
+	 var pgid=evnt.currentTarget.getAttribute("data-pgid");
+	
+	 if(pgid==1)
+	   $window.location.href="index.html?month="+$scope.selectMonth;
+	 else if(pgid==2)
+	    $window.location.href="add.html?month="+$scope.selectMonth;
+	 else if(pgid==3)
+	{
+		var id=evnt.currentTarget.getAttribute("data-editid");
+	    $window.location.href="edit.html?month="+$scope.selectMonth+"&id="+id;
+	}
+	 else if(pgid==4)
+	    $window.location.href="report.html?month="+$scope.selectMonth;
+	 
+	   
+}
+
 }]);
 
 
@@ -199,19 +225,6 @@ app.directive('selectOnClick', ['$window', function ($window) {
 }]);
 
 //javascript
-
-function exportToExcel() {
-  let table = document.getElementsByTagName("table");
-  var fileName= getExpenseMonth($scope.selectMonth);
-  fileName=fileName.replace(" ","_");
-  fileName=fileName.concat(".xlsx");
-  TableToExcel.convert(table[0], {
-    name:fileName,
-    sheet: {
-      name: 'Expense List'
-    }
-  });
-}
 
 function clearData()
 {
