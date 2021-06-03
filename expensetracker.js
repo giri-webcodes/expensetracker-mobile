@@ -110,16 +110,6 @@ $scope.sumup=function(){
    });
 }
 
-$scope.getExpense=function()
-{
-    var jsonse = JSON.stringify($scope.list);
-    var blob = new Blob([jsonse], {
-      type: "application/json"  
-    });
-    $scope.filename = "expense_2021.json";
-    saveAs(blob, $scope.filename);
-};
-
 $scope.delete=function()
 {
  if($window.confirm('Delete expense?'))
@@ -225,15 +215,37 @@ app.directive('selectOnClick', ['$window', function ($window) {
 }]);
 
 //javascript
-
-function clearData()
-{
-  localStorage.clear();
-}
-   
 function getExpenseMonth(month)
 {
   var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 var date= new Date();
  return months[month-1] + ' ' + date.getFullYear();
+}
+
+   //sum up clicked row
+function  sumup()
+{ 
+	var total=0;
+	$("tr.chkrow").each(function() {
+		var chck=$(this).find("input[type='checkbox']");
+		
+		if($(chck).is(':checked'))
+		{
+          total+=parseInt($(chck).val());
+         }
+});
+
+var format = new Intl.NumberFormat('en-INR', { 
+
+                style: 'currency', 
+
+                currency: 'INR', 
+
+                minimumFractionDigits: 2, 
+
+            }); 
+
+
+$('#chcksum').text(" - "+ format.format(total));
+	
 }
