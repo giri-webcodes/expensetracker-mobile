@@ -17,5 +17,9 @@ var expenseTypes=[
 "Grocery",
 "Income",
 "Department Store",
-"Postpaid Bill"
+"Postpaid Bill",
+"Gift",
+"Car Rent",
+"Medical",
+"Sweets"
 ];
