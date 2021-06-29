@@ -74,7 +74,7 @@ angular.forEach($scope.list,function(item)
 $scope.formatAmount= function(row){
     var color='black';
     
-    if(row.amount >2000)
+    if(row.amount >1000)
     {  
     	 color='red';
     }
