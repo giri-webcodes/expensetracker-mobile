@@ -21,5 +21,14 @@ var expenseTypes=[
 "Gift",
 "Car Rent",
 "Medical",
-"Sweets"
+"Sweets",
+"Driver Fee",
+"Honda Activa 125",
+"Snacks",
+"Petrol",
+"Cash Given",
+"Festival Dress",
+"Dress Purchase",
+"Restaurant Bill",
+"Parenting"
 ];
