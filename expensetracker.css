@@ -46,6 +46,13 @@ display: inline-block;
 .navbar-nav{
     padding-left: 1%;
 }
+
+.btn-info, .btn-info:hover, .btn-info:active, .btn-info:visited {
+    background-color: #5cb85c !important;
+    color: #f7f7f7 !important;
+}
+
+
 table{
     background-color: azure !important;
 }
