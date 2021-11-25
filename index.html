@@ -64,7 +64,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-        	         <th>       	<input type="checkbox"/>  </th>
+            <!-- <th> <input type="checkbox"/> </th> !-->
             <th>
             Expense
             </th>
@@ -78,9 +78,9 @@
     </thead>
     <tbody>
         <tr class="chkrow" data-date="row.date" ng-repeat="row in mlist | orderBy:'-amount' | filter:searchText | filter:expenseFilter track by $index">
-        	     <td>
-        	<input onclick="sumup()" ng-value="row.amount"  id="chck"  type="checkbox"/>
-        	       </td>
+        	           <!--. <td>
+        <input onclick="sumup()" ng-value="row.amount"  id="chck"  type="checkbox"/>
+        	       </td>!-->
             <td>
                 <a href="" data-pgid="3"    ng-click="loadPage($event)"   data-editid="{{row.id}}"> {{row.expense}}</a>               
             </td>
@@ -96,7 +96,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="4">
+            <td colspan="3">
             	  <span>Expense: </span>
              <label class="text-danger" ng-bind="totalExpense | currency: '&#8377;' "></label> 
              	<span> *****</span>
