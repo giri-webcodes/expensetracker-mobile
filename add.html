@@ -51,59 +51,55 @@
   
    <form name="form"  ng-submit="Add()">
   <div class="row">
-    <div style="width:20%">
+    <div style="width:5em">
       <label for="expense" class="form-label required-field">Expense<i class="bi bi-asterisk"></i></label>
     </div>
-    <div  style="width:60%">
+    <div  style="width:15em">
       <input type="text" class="form-control" required="required" select-on-click ng-model="newExpense" id="expense" placeholder="expense type" autofocus>
   
     </div>
-    <div style="width:10%">
+    <div style="width:1em">
     <a class="btn btn-info"     href="expensetype.html" >Add</a> 
     </div>
   </div>
   <br/>
   <div class="row">
-    <div style="width:20%">
+    <div style="width:5em">
       <label for="amount" class="form-label required-field">Amount</label>
     </div>
-    <div style="width:60%">
+    <div style="width:15em">
       <input type="number" autocomplete="off" class="form-control" select-on-click  required="required" ng-model="amount" id="amount" placeholder="expense amount" >
     </div>
   </div>
    <br/>
   <div class="row">
-    <div style="width:20%">
+    <div style="width:5em">
       <label for="date" class="form-label required-field">Date</label>
     </div>
-    <div style="width:60%">
+    <div style="width:15em">
       <input type="date" class="form-control"  required="required" ng-model="date" id="date" placeholder="expense date">
     </div>
   </div>
-   
+     <br/>
   <div class="row">
-    <div class="col-md-1">
+ <div style="width:5em">
       <label for="date" class="form-label">Comment</label>
     </div>
-    <div class="col-md-4">
+  <div style="width:15em">
      <textarea class="form-control" ng-model="comment" cols="50"  maxlength="50" rows="2"></textarea>
     </div>
-    <div class="col-md-7">
-
-    </div>
+   
   </div>
   <br/>
   <div class="row">
-    <div class="col-md-1">
+ <div style="width:5em">
       
     </div>
-    <div class="col-md-3">
+  <div style="width:15em">
       <input class="btn btn-info" type="submit" value="Save">
        <a class="btn btn-info"    data-pgid="1"  href="" ng-click="loadPage($event)">Back</a> 
     </div>
-    <div class="col-md-7">
-    
-    </div>
+
   </div>
   
    </form>
