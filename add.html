@@ -23,11 +23,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="add.html">Add Expense</a>
+            <a class="nav-link" href="report.html">Report</a>
           </li>
-          <li class="nav-item active">
-              <a class="nav-link" onclick="exportToExcel()" href="#">Export Excel</a>
-            </li>
+   
             <li class="nav-item active">
               <a class="nav-link" href="admin.html">Admin</a>
             </li>
@@ -53,38 +51,36 @@
   
    <form name="form"  ng-submit="Add()">
   <div class="row">
-    <div class="col-md-1">
-      <label for="expense" class="form-label required-field">Expense <i class="bi bi-asterisk"></i></label>
+    <div style="width:20%">
+      <label for="expense" class="form-label required-field">Expense<i class="bi bi-asterisk"></i></label>
     </div>
-    <div class="col-md-4">
-      <input type="text" class="form-control" required="required" select-on-click ng-model="newExpense" id="expense" placeholder="add new expense" autofocus>
+    <div  style="width:60%">
+      <input type="text" class="form-control" required="required" select-on-click ng-model="newExpense" id="expense" placeholder="expense type" autofocus>
+  
     </div>
-    <div class="col-md-7">
-
+    <div style="width:10%">
+    <a class="btn btn-info"     href="expensetype.html" >Add</a> 
     </div>
   </div>
+  <br/>
   <div class="row">
-    <div class="col-md-1">
+    <div style="width:20%">
       <label for="amount" class="form-label required-field">Amount</label>
     </div>
-    <div class="col-md-4">
+    <div style="width:60%">
       <input type="number" autocomplete="off" class="form-control" select-on-click  required="required" ng-model="amount" id="amount" placeholder="expense amount" >
     </div>
-    <div class="col-md-7">
-
-    </div>
   </div>
+   <br/>
   <div class="row">
-    <div class="col-md-1">
+    <div style="width:20%">
       <label for="date" class="form-label required-field">Date</label>
     </div>
-    <div class="col-md-4">
+    <div style="width:60%">
       <input type="date" class="form-control"  required="required" ng-model="date" id="date" placeholder="expense date">
     </div>
-    <div class="col-md-7">
-
-    </div>
   </div>
+   
   <div class="row">
     <div class="col-md-1">
       <label for="date" class="form-label">Comment</label>
@@ -103,7 +99,6 @@
     </div>
     <div class="col-md-3">
       <input class="btn btn-info" type="submit" value="Save">
-      <input class="btn btn-info" ng-click="resetForm()" type="button" value="Reset">
        <a class="btn btn-info"    data-pgid="1"  href="" ng-click="loadPage($event)">Back</a> 
     </div>
     <div class="col-md-7">
