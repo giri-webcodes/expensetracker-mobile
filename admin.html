@@ -115,13 +115,13 @@
           
       function loadData()
 {
-  localStorage.clear();
+  localStorage.removeItem("list");
   localStorage.setItem("list",JSON.stringify(explist));
 }
 
     function clearData()
 {
-  localStorage.clear();
+  localStorage.removeItem("list");
   alertInfo( 'data cleared');
 }
 
@@ -147,7 +147,7 @@ function alertInfo(msg)
     }
 
     function onReaderLoad(event){
-        localStorage.clear();
+        localStorage.removeItem("list");
      //   $('#expensechart').append(event.target.result)
   localStorage.setItem("list",event.target.result);
   alertInfo('data imported');
