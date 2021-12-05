@@ -115,8 +115,17 @@
     </div>
     <script type="text/javascript">
     $(function(){
+    	
   $( "#expense" ).autocomplete({
-    source: expenseTypes
+    source: function (request, response) {
+     var array=	JSON.parse(localStorage.getItem("etypelist"));
+    	response($.map(array, function (val, idx) {
+                return {
+                    label: val.etype,
+                    value: val.etype
+                };
+            }));
+    	}
   });
 });
     </script>
