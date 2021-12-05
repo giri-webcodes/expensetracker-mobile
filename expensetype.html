@@ -1,0 +1,167 @@
+<! doctype html>
+<html ng-app="expenseTypeApp">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="expensetypecode.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="expensetracker.css" rel="stylesheet">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+</head>
+<body   ng-controller="ExpenseTypeController">
+    <nav  class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <a style="padding-left:1%;" class="navbar-brand"   href="add.html" >Expense Tracker </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link"   href="add.html">Add Expense</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="admin.html">Admin</a>
+              </li>
+            </ul>
+        </div>
+      </nav>
+      
+     
+<div class="content">
+	   <div class="pgpadding">
+	    <h5 class="header"> Expense Type List </h5>
+	   </div>
+	<div class="row" >  
+		      <div  style="width:60%">
+			<input class="form-control" id="file" type="file" />
+			</div>
+			    <div  style="width:20%">
+				<input    class="btn btn-info"  type="button" value="Export" onclick="exportJsonData()">
+				</div>
+				    <div  style="width:20%">
+				<input    class="btn btn-info"  type="button" value="Clear" ng-click="Clear()">
+				</div>
+		</div>
+		<br/>
+    <div class="row" >       
+  
+        <div  style="width:60%">
+  <input  class="form-control" id="txtadd"  type="input" ng-model="etype" placeholder="expense type"/>
+         </div>
+                  <div  style="width:40%">
+  <input  class="btn btn-info"  type="button"   id="btnadd" ng-click="Add()"   value="Add Type">
+         </div>
+         
+        </div>
+    <br/>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+            Expense Type
+            </th>
+            <th>
+              Created  Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="chkrow"  ng-repeat="row in etypelist | orderBy:'-date' ">
+      
+            <td>
+                <label> {{row.etype}}</label>               
+            </td>
+    
+                  <td>
+                <label ng-bind="row.date |  date:'MM/dd/yyyy'"></label>
+            </td>
+          
+      
+        </tr>
+    </tbody>
+</table>
+    	<span>&copy; <script>document.write(new Date().getFullYear())</script> Expense Tracker  - <a href="mailto: giri-webdev@outlook.com">Giri Prasad</a>
+    		| <a href="" onclick="openFullscreen()">view</a>
+    		| <a href=""    onclick="closeFullscreen()">resize</button>
+	</span>
+    <br/>
+        <br/>
+</div>
+    <script type="text/javascript">
+   
+ function exportJsonData()
+{
+    var jsonse =localStorage.getItem('etypelist');
+    var blob = new Blob([jsonse], {
+      type: "application/json"  
+    });
+    var filename = "expensetype.json";
+    saveAs(blob, filename);
+};
+
+    
+    //file upload
+(function(){
+    
+    function onChange(event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+    }
+
+    function onReaderLoad(event){
+        localStorage.removeItem("etypelist");
+     //   $('#expensechart').append(event.target.result)
+  localStorage.setItem("etypelist",event.target.result);
+  alertInfo('data imported');
+   
+    }
+    
+ 
+    document.getElementById('file').addEventListener('change', onChange);
+
+}());
+    
+    function alertInfo(msg)
+{
+	    $.alert({
+        title: 'Successful ☺',
+        content: msg,
+          width :'auto',
+          useBootstrap: false,
+          //theme: 'Modern'
+    });
+}
+
+ 
+var elem = document.documentElement;
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+    </script>
+</body>
+
+</html>
