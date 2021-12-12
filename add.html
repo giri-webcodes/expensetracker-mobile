@@ -110,11 +110,16 @@
   $( "#expense" ).autocomplete({
     source: function (request, response) {
      var array=	JSON.parse(localStorage.getItem("etypelist"));
+       var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+       
     	response($.map(array, function (val, idx) {
+    	if(matcher.test(val.etype  ))
+      {
                 return {
                     label: val.etype,
                     value: val.etype
                 };
+             }
             }));
     	}
   });
