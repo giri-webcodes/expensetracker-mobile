@@ -58,7 +58,7 @@ angular.forEach($scope.list,function(item)
       {
       	 $scope.mlist.push(item);
      
-     	if(item.expense !=='Income')
+     	if(item.expense !=='Income' || item.expense !=='Cash Received')
    {
       $scope.totalExpense += parseFloat(item.amount);
     }
