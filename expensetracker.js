@@ -58,13 +58,14 @@ angular.forEach($scope.list,function(item)
       {
       	 $scope.mlist.push(item);
      
-     	if(item.expense !=='Income' || item.expense !=='Cash Received')
+     	if(item.expense ==='Income' || item.expense ==='Cash Received')
    {
-      $scope.totalExpense += parseFloat(item.amount);
+   	    $scope.totalIncome += parseFloat(item.amount);
+   
     }
     else
 {
-	      $scope.totalIncome += parseFloat(item.amount);
+	     $scope.totalExpense += parseFloat(item.amount);
 	}
       }
    });
@@ -79,7 +80,7 @@ $scope.formatAmount= function(row){
     	 color='red';
     }
     
-      if(row.expense ==='Income')
+      if(row.expense ==='Income' || row.expense ==='Cash Received')
     {  
     	 color='green';
     }
@@ -97,7 +98,7 @@ $scope.sumup=function(){
   $scope.totalIncome=0;
    angular.forEach($scope.mlist,function(item)
    {
-   	if(item.expense !=='Income')
+   	if(item.expense !=='Income' || item.expense !=='Cash Received')
    {
       $scope.totalExpense += parseFloat(item.amount);
     }
