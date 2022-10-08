@@ -33,7 +33,9 @@ localStorage.setItem("list",JSON.stringify($scope.list));
 $scope.resetForm();
 $scope.monthExp();
 $("#alert").show();
-$("#alert").hide(10000);
+setTimeout(function (){
+$("#alert").hide();
+},500);
 };
 
 $scope.resetForm = function()
