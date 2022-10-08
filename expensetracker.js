@@ -162,7 +162,9 @@ localStorage.clear();
 localStorage.setItem("list",JSON.stringify($scope.list));
 $scope.monthExp();
 $("#alert").show();
-$("#alert").hide(6000);
+setTimeout(function (){
+$("#alert").hide();
+},500);
 }
 
 $scope.exportToExcel = function (){
