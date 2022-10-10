@@ -71,6 +71,11 @@ thead > tr>th
 	 /*  border:none ! important;*/
 	   font-weight: normal !important;
 }
+
+table > tbody > tr:hover {
+    background-color: lightgreen;
+}
+
 #alert
 {
 	color:red;
