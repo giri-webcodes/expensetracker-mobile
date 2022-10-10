@@ -76,6 +76,10 @@ table > tbody > tr:hover {
     background-color: lavender;
 }
 
+table > tbody > tr > td:nth-child(1){
+	font-weight:bold;
+}
+
 #alert
 {
 	color:red;
