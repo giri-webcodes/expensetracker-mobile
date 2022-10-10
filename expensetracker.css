@@ -73,7 +73,7 @@ thead > tr>th
 }
 
 table > tbody > tr:hover {
-    background-color: lavender;
+    background-color: aliceblue;
 }
 
 table > tbody > tr > td:nth-child(2){
