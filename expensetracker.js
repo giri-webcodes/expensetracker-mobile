@@ -79,10 +79,10 @@ $scope.formatAmount= function(row){
     
     if(row.amount >1000)
     {  
-    	 color='red';
+    	 color='coral';
     }
     
-      if(row.expense ==='Income' || row.expense ==='Cash Received')
+    if(row.expense ==='Income' || row.expense ==='Cash Received')
     {  
     	 color='green';
     }
