@@ -76,7 +76,7 @@ table > tbody > tr:hover {
     background-color: lavender;
 }
 
-table > tbody > tr > td:nth-child(1){
+table > tbody > tr > td:nth-child(2){
 	font-weight:bold;
 }
 
