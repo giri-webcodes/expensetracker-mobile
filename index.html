@@ -88,10 +88,10 @@
                 <a href="" data-pgid="3"    ng-click="loadPage($event)"   data-editid="{{row.id}}"> {{row.expense}}</a>               
             </td>
             <td>
-            	    	<label  ng-style="formatAmount(row)" ng-bind="row.amount | currency:'&#8377;'" ></label>
+            	    	<label style="font-weight:bold"  ng-style="formatAmount(row)" ng-bind="row.amount | currency:'&#8377;'" ></label>
             </td>
                   <td>
-                <label ng-bind="row.date |  date:'MM/dd/yyyy'"></label>
+                <label style="font-weight:bold" ng-bind="row.date |  date:'MM/dd/yyyy'"></label>
             </td>
           
       
