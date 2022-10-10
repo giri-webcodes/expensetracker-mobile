@@ -73,7 +73,7 @@ thead > tr>th
 }
 
 table > tbody > tr:hover {
-    background-color: lightgreen;
+    background-color: lavender;
 }
 
 #alert
