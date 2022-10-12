@@ -28,7 +28,13 @@ app.controller('ExpenseTrackerController',['$scope','$window','$filter',function
  //function
 
 $scope.Add=function(){
-$scope.list.push({id:($scope.list.length +1),expense:$scope.newExpense,amount:parseFloat($scope.amount),date:new Date($scope.date),comment:$scope.comment});
+  var count=($scope.list.length +1);
+ var dfound =$scope.list.findIndex(e=>e.id === count);
+ if(dfound!=-1){
+      count = count+1;
+ }
+ 
+$scope.list.push({id:count,expense:$scope.newExpense,amount:parseFloat($scope.amount),date:new Date($scope.date),comment:$scope.comment});
 localStorage.setItem("list",JSON.stringify($scope.list));
 $scope.resetForm();
 $scope.monthExp();
